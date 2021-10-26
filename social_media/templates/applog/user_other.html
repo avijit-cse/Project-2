@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+{% block title %}{{user_other.user_profile.fullname}} (@{{user_other.username}}){% endblock title %}
+{% block body %}
+<div class="row">
+<div class="col-sm-4">
+  {% if user_other.user_profile.proile_pic %}
+          <img src="/media/{{user.user_profile.proile_pic}}" width="250px"  height="250px" class="rounded-circle ">
+        {% else %}
+        <img src="/media/new.PNG" width="250px" height="250px" class="rounded-circle ">
+        
+        {% endif %}
+ 
+
+
+</div>
+<div class="col-sm-8">
+<h3>{{user_other.username}} &nbsp;
+{% if not already_followed %}
+<a href="{% url 'follow' username=user_other.username %}" class="btn btn-primary">Follow</a>
+{% else %}
+<a href="{% url 'unfollow' username=user_other.username %}" class="btn btn-primary">UNFollow</a>
+
+{% endif %}
+
+</h3>
+<br>
+<h4>{{user_other.post.count}} posts &nbsp; &nbsp; {{user_other.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following</h4>  </h4>
+<br>
+<h3>{{user_other.user_profile.fullname}}</h3>
+<h6>{{user_other.user_profile.description|linebreaks}}</h6>
+
+
+</div>
+</div>
+<hr>
+<div class="row">
+    {% for post in user_other.post.all  %}
+      <div class="cimage" >
+        <img src="/media/{{post.image}}" title="{{post.caption}}" height="200px" width="200px" overflow="hidden">
+      </div>
+  
+    {% endfor %}
+  </div>
+
+
+{% endblock body %}
+
+

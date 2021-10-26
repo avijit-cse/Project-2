@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{{title}}{% endblock title %}
+{% block css %}
+ <style>
+ .singup{
+     width:450px;
+     border:1px solid #ccc;
+     padding:20px;
+   
+}
+.login
+{
+    width:450px;
+    padding:40px;
+    border:1px solid #ccc;
+
+}
+ </style>
+{% endblock css %}
+
+{% block body %}
+<center>
+<div class="singup">
+<h3>SingUp to photos from your friends </h3>
+<form method="POST">
+{{form|crispy}}
+{% csrf_token %}
+<button type="submit"style="width:100%" class="btn btn-primary">SingUp</button>
+<from>
+</div>
+<br>
+<div class="login">
+<p> Have an account ?<a href="{% url 'login' %}" >Login </a></p>
+</div>
+</center>
+{% endblock body %}
